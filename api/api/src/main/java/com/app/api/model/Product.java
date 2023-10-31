@@ -49,4 +49,10 @@ public class Product {
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 
+    public Product(int id, String name, double price, String img) {
+        this.id = id;
+        this.productName = name;
+        this.price = price;
+        this.imageUrl = img;
+    }
 }

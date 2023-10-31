@@ -13,6 +13,5 @@ public interface UserRepository extends ListCrudRepository<User, Integer> {
     @Query("update User u set u.password = ?1, u.address = ?2, u.phone = ?3 where u.id = ?4")
     void updateUser(@NonNull String password, String address, String phone, @NonNull Integer id);
 
-
     User findByUsernameAndPassword(String username, String password);
 }
