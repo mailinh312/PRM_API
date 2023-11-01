@@ -11,9 +11,12 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final UserRepository userRepository;
+    private final JWTService jwtService;
 
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,
+                       JWTService jwtService) {
         this.userRepository = userRepository;
+        this.jwtService = jwtService;
     }
 
     public User register(RegistrationBody registrationBody) {
@@ -27,8 +30,14 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User login(String username, String password) {
-        return userRepository.findByUsernameAndPassword(username, password);
+    public String login(String username, String password) {
+        User user = userRepository.findByUsernameAndPassword(username, password);
+
+        if (user != null) {
+            return jwtService.generateJWT(user);
+        }
+        return null;
+
     }
 
     public Optional<User> getUserById(int id) {

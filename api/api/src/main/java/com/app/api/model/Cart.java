@@ -34,4 +34,8 @@ public class Cart {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+    @Column(name = "order_date", nullable = false)
+    @JdbcTypeCode(SqlTypes.TIMESTAMP)
+    private Instant orderDate = Instant.now();
+
 }

@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,7 +30,12 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public User login(@RequestParam String username, @RequestParam String password) {
+    public String login(@RequestParam String username, @RequestParam String password) {
         return userService.login(username, password);
+    }
+
+    @GetMapping("/profile")
+    public User getLoggedInUserProfile(@AuthenticationPrincipal User user) {
+        return user;
     }
 }
