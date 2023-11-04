@@ -20,14 +20,15 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<User> register(@Valid @RequestBody RegistrationBody registrationBody) {
+    public ResponseEntity<User> register(@Valid @RequestBody User user) {
         try {
-            userService.register(registrationBody);
-            return ResponseEntity.ok().build();
+            userService.register(user);
+            return ResponseEntity.status(HttpStatus.OK).build();
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
         }
     }
+
 
     @GetMapping("/login")
     public String login(@RequestParam String username, @RequestParam String password) {

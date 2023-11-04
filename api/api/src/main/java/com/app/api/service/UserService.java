@@ -3,6 +3,8 @@ package com.app.api.service;
 import com.app.api.api.model.RegistrationBody;
 import com.app.api.model.User;
 import com.app.api.repository.UserRepository;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,11 +21,13 @@ public class UserService {
         this.jwtService = jwtService;
     }
 
-    public User register(RegistrationBody registrationBody) {
-        User user = new User();
-        user.setUsername(registrationBody.getUsername());
-        user.setPassword(registrationBody.getPassword());
-        return userRepository.save(user);
+    public User register(@NotNull User user) throws Exception {
+        if (userRepository.findByUsernameIgnoreCase(user.getUsername()).isPresent()) {
+            throw new Exception();
+        }
+        else {
+            return userRepository.save(user);
+        }
     }
 
     public List<User> getAllUsers() {
