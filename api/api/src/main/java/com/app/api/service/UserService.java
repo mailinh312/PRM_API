@@ -41,7 +41,6 @@ public class UserService {
             return jwtService.generateJWT(user);
         }
         return null;
-
     }
 
     public Optional<User> getUserById(int id) {

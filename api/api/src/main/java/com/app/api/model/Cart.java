@@ -38,4 +38,8 @@ public class Cart {
     @JdbcTypeCode(SqlTypes.TIMESTAMP)
     private Instant orderDate = Instant.now();
 
+    @Column(name = "address")
+    @JdbcTypeCode(SqlTypes.NVARCHAR)
+    private String address;
+
 }
