@@ -27,6 +27,4 @@ public class UserController {
     public void updateUser(@AuthenticationPrincipal User userAuth, @RequestBody User user){
         userService.updateUser(user);
     }
-
-
 }

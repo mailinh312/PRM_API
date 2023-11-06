@@ -42,4 +42,12 @@ public class Cart {
     @JdbcTypeCode(SqlTypes.NVARCHAR)
     private String address;
 
+    @Column(name = "phone", length = 20)
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private String phone;
+
+    @Column(name = "note")
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private String note;
+
 }
