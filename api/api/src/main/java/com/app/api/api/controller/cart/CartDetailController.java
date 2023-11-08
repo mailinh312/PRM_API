@@ -1,8 +1,10 @@
 package com.app.api.api.controller.cart;
 
 import com.app.api.model.CartDetail;
+import com.app.api.model.User;
 import com.app.api.repository.CartDetailRepository;
 import com.app.api.service.CartDetailService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +20,7 @@ public class CartDetailController {
     }
 
     @PostMapping
-    public CartDetail addCartDetails(@RequestBody CartDetail cartDetail, @RequestParam int cartId, @RequestParam int productId) {
+    public CartDetail addCartDetails(@RequestBody CartDetail cartDetail, @RequestParam int cartId, @RequestParam int productId, @AuthenticationPrincipal User user) {
         return cartDetailService.addCartDetails(cartDetail, cartId, productId);
     }
 }

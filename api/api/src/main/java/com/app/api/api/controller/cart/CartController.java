@@ -34,6 +34,4 @@ public class CartController {
     public Cart addCart(@RequestBody Cart cart, @AuthenticationPrincipal User user){
         return cartService.addCart(cart, user);
     }
-
-
 }
